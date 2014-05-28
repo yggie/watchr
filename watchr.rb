@@ -62,13 +62,17 @@ last_playing = ''
 Dir.mkdir('tmp/') unless Dir.exists?('tmp/')
 tmp_file = Tempfile.new('skip_list', 'tmp')
 @watch = [@dir.gsub("\n", ''), tmp_file.path].join('/')
+@default_options = {
+  sender: 'com.sonos.macController',
+  contentImage: 'http://ecx.images-amazon.com/images/I/51H9mCZPB-L._SL500_SS100_.jpg'
+}
 
-def notify(options={sound: 'default', contentImage: 'http://ecx.images-amazon.com/images/I/51H9mCZPB-L._SL500_SS100_.jpg'})
+def notify(options={})
   s = ''
   if options[:title]
     options[:execute] = %Q{echo '#{options[:title]}' >> '#{@watch}'}
   end
-  options.each_pair do |key, value|
+  @default_options.merge(options).each_pair do |key, value|
     s << %Q{ -#{key} "#{value}"}
   end
 
