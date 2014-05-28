@@ -7,18 +7,29 @@ require 'filewatcher'
 
 system = Sonos::System.new
 @speaker = system.speakers.first
+@help = {
+  what: 'show me what is playing',
+  shit_it: 'next track (till the API is sorted)',
+  next: 'next track',
+  pause: 'pause the current track',
+  play: 'play the current track',
+  watchr_help: 'print the help text for watchr',
+  exit: 'stop watchr'
+}
+
+def watchr_help
+  @help
+end
 
 puts "Found #{system.speakers.count} speakers"
 system.speakers.each_with_index do |speaker, i|
   puts "  #{i + 1}. #{speaker.name}"
 end
 
-puts "\n\twhat - show me what is playing"
-puts "\tshit_it - next track (till the API is sorted)"
-puts "\tnext - next track"
-puts "\tpause - pause the current track"
-puts "\tplay - play the current track"
-puts "\texit - stop watchr"
+puts ''
+@help.each_pair do |key, value|
+  puts "\t#{key} - #{value}"
+end
 puts ''
 
 def shit_it
