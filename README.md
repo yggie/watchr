@@ -4,7 +4,13 @@ Empower [tastebud](https://github.com/skinnyfit/tastebud) with human intelligenc
 
 ### How to use it
 
-When a track appears that you don't like, there are two ways to skip it:
+Run the console program:
+
+~~~
+ruby watchr.rb
+~~~
+
+This will start watching the sonos playlist. When a track appears that you don't like, there are two ways to skip it:
 
 - Click the notification bubble that appears
 - Enter `shit_it` in the console
